@@ -14,4 +14,4 @@ WORKDIR /usr/src/app
 RUN mvn clean package
 
 # Copy the built artifact to Tomcat webapps directory
-COPY ./target/api.war /usr/local/tomcat/webapps/
+RUN cp ./target/api.war /usr/local/tomcat/webapps/
