@@ -2,7 +2,7 @@ FROM tomcat:9.0.83-jdk8-corretto-al2
 LABEL maintainer="felipe.francc2@gmail.com"
 
 # Install Maven
-RUN apt-get update && apt-get install -y maven
+RUN yum install -y maven
 
 # Copy the source code to the container
 COPY . /usr/src/app
