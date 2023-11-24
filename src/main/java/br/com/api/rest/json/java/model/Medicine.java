@@ -4,11 +4,6 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * 
- * @author Diovani Bernardi da Motta Data: 15/04/2016 Classe modelo usada como
- *         exemplo de entidade persistente
- */
 @XmlRootElement
 public class Medicine implements Serializable {
 

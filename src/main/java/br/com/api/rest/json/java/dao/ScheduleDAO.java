@@ -7,11 +7,7 @@ import java.util.Optional;
 import br.com.api.rest.json.java.interfaces.Persist;
 import br.com.api.rest.json.java.model.Schedule;
 
-/**
- * 
- * @author Diovani Bernardi da Motta Data: 15/04/2016 Classe respons�vel por
- *         efetuar a itera��o com a camada de persit�ncia de dados do sistema
- */
+
 public class ScheduleDAO implements Persist<Schedule> {
 
 	private static List<Schedule> schedules = new ArrayList<Schedule>();

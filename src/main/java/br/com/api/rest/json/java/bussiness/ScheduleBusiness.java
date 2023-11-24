@@ -6,12 +6,7 @@ import br.com.api.rest.json.java.dao.ScheduleDAO;
 import br.com.api.rest.json.java.interfaces.Business;
 import br.com.api.rest.json.java.model.Schedule;
 
-/**
- * 
- * @author Diovani Bernardi da Motta Data: 15/04/2016 Classe respons�vel por
- *         efetuar o encapsulamento da regra de neg�cio associada a entidade
- *         persitente
- */
+
 public class ScheduleBusiness implements Business<Schedule> {
 
 	private ScheduleDAO scheduleDAO = new ScheduleDAO();

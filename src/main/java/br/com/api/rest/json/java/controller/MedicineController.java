@@ -16,11 +16,6 @@ import br.com.api.rest.json.java.bussiness.MedicineBusiness;
 import br.com.api.rest.json.java.interfaces.Controller;
 import br.com.api.rest.json.java.model.Medicine;
 
-/**
- * 
- * @author Diovani Bernardi da Motta. Data: 15/04/2016 Classe respons�vel por
- *         interceptar e devolver respostas geradas pela API
- */
 @Path("/medicine")
 public class MedicineController implements Controller<Medicine> {
 

@@ -3,51 +3,46 @@ package br.com.api.rest.json.java.interfaces;
 import java.util.List;
 
 /**
+ * Interface responsible for defining the default behavior offered to the API's
+ * control classes.
  * 
- * @author Diovani Bernardi da Motta Data: 15/04/2015 Inteface responsável por
- *         definir o comportamento padrão oferecido as classe de controle da API
- * @param <T>
- *            o tipo de dados que será usado na iteração com a API
+ * @param <T> the data type to be used in the API interaction
  */
 public interface Controller<T> {
 
 	/**
-	 * Método responsável por salvar um objeto
+	 * Method responsible for saving an object.
 	 * 
-	 * @param object
-	 *            o objeto a ser persistido
+	 * @param object the object to be persisted
 	 */
 	public void save(T object);
 
 	/**
-	 * Método responsável por atualizar um objeto
+	 * Method responsible for updating an object.
 	 * 
-	 * @param object
-	 *            o objeto a ser persistido
+	 * @param object the object to be persisted
 	 */
 	public void merge(T object);
 
 	/**
-	 * Método responsável por remover um objeto
+	 * Method responsible for removing an object.
 	 * 
-	 * @param object
-	 *            o objeto a ser persistido
+	 * @param object the object to be persisted
 	 */
 	public void remove(T object);
 
 	/**
-	 * Método responsável por retornar uma lista de objetos da API
+	 * Method responsible for returning a list of objects from the API.
 	 * 
-	 * @return uma lista de objetos do tipo especificado
+	 * @return a list of objects of the specified type
 	 */
 	public List<T> findAll();
 
 	/**
-	 * Método responsável por retornar um objeto através do seu id
+	 * Method responsible for returning an object by its ID.
 	 * 
-	 * @param ID
-	 *            o ID que se deseja retorna o objeto
-	 * @return um objeto do tipo especificado
+	 * @param ID the ID of the object to be returned
+	 * @return an object of the specified type
 	 */
 	public T findByID(Long ID);
 }
