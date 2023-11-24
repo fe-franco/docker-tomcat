@@ -1,58 +1,57 @@
 package br.com.api.rest.json.java.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.api.rest.json.java.data.DatabaseConnection;
 import br.com.api.rest.json.java.interfaces.Persist;
 import br.com.api.rest.json.java.model.Medicine;
 
-public class MedicineDAO implements Persist<Medicine> {
+public class MedicineDAO {
 
-	private static List<Medicine> medicines = new ArrayList<Medicine>();
+    @Override
+    public void save(Medicine object) {
+        medicines.add(object);
+    }
 
-	static {
-		/* Create Medicine objects */
-		Medicine m1 = new Medicine(1L, "Paracetamol");
-		Medicine m2 = new Medicine(2L, "Aspirin");
-		Medicine m3 = new Medicine(3L, "Ibuprofen");
-		Medicine m4 = new Medicine(4L, "Amoxicillin");
-		Medicine m5 = new Medicine(5L, "Loratadine");
-		Medicine m6 = new Medicine(6L, "Omeprazole");
+    @Override
+    public void merge(Medicine object) {
+        medicines.add(object);
+    }
 
-		/* Adiciono a lista */
-		medicines.add(m1);
-		medicines.add(m2);
-		medicines.add(m3);
-		medicines.add(m4);
-		medicines.add(m5);
-		medicines.add(m6);
-	}
+    @Override
+    public void remove(Medicine object) {
+        medicines.remove(object);
+    }
 
-	@Override
-	public void save(Medicine object) {
-		medicines.add(object);
-	}
+    @Override
+    public List<Medicine> findAll() {
+        List<Medicine> prestadores = new ArrayList<>();
+        String sql = "SELECT * FROM T_PLPL_MEDICAMENTO";
 
-	@Override
-	public void merge(Medicine object) {
-		medicines.add(object);
-	}
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
 
-	@Override
-	public void remove(Medicine object) {
-		medicines.remove(object);
-	}
+            while (rs.next()) {
+                Medicine prestador = new Medicine(sql, sql, sql, sql);
+                prestadores.add(prestador);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return prestadores;
+    }
 
-	@Override
-	public List<Medicine> findAll() {
-		return medicines;
-	}
-
-	@Override
-	public Medicine findByID(Long ID) {
-		Optional<Medicine> fornecedor = medicines.stream().filter(f -> f.getId().equals(ID)).findFirst();
-		return fornecedor.get();
-	}
+    @Override
+    public Medicine findByID(Long ID) {
+        Optional<Medicine> fornecedor = medicines.stream().filter(f -> f.getId().equals(ID)).findFirst();
+        return fornecedor.get();
+    }
 
 }
