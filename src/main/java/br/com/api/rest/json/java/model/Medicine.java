@@ -8,41 +8,82 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Medicine implements Serializable {
 
 	private static final long serialVersionUID = 6265729338971780551L;
-	private Long id;
-	private String name;
+	private Long idMedicamento;
+	private String nmMedicamento;
+	private String dsDetalhadaMedicamento;
+	private String nrCodigoBarras;
+	private String dtCadastro;
+	private String nmUsuario;
 
 	public Medicine() {
 		super();
 	}
 
-	public Medicine(Long id, String name) {
+	public Medicine(Long idMedicamento, String nmMedicamento, String dsDetalhadaMedicamento, String nrCodigoBarras,
+			String dtCadastro, String nmUsuario) {
 		super();
-		this.id = id;
-		this.name = name;
+		this.idMedicamento = idMedicamento;
+		this.nmMedicamento = nmMedicamento;
+		this.dsDetalhadaMedicamento = dsDetalhadaMedicamento;
+		this.nrCodigoBarras = nrCodigoBarras;
+		this.dtCadastro = dtCadastro;
+		this.nmUsuario = nmUsuario;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getIdMedicamento() {
+		return idMedicamento;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdMedicamento(Long idMedicamento) {
+		this.idMedicamento = idMedicamento;
 	}
 
-	public String getName() {
-		return name;
+	public String getNmMedicamento() {
+		return nmMedicamento;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNmMedicamento(String nmMedicamento) {
+		this.nmMedicamento = nmMedicamento;
+	}
+
+	public String getDsDetalhadaMedicamento() {
+		return dsDetalhadaMedicamento;
+	}
+
+	public void setDsDetalhadaMedicamento(String dsDetalhadaMedicamento) {
+		this.dsDetalhadaMedicamento = dsDetalhadaMedicamento;
+	}
+
+	public String getNrCodigoBarras() {
+		return nrCodigoBarras;
+	}
+
+	public void setNrCodigoBarras(String nrCodigoBarras) {
+		this.nrCodigoBarras = nrCodigoBarras;
+	}
+
+	public String getDtCadastro() {
+		return dtCadastro;
+	}
+
+	public void setDtCadastro(String dtCadastro) {
+		this.dtCadastro = dtCadastro;
+	}
+
+	public String getNmUsuario() {
+		return nmUsuario;
+	}
+
+	public void setNmUsuario(String nmUsuario) {
+		this.nmUsuario = nmUsuario;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + (int) (idMedicamento ^ (idMedicamento >>> 32));
+		result = prime * result + ((nmMedicamento == null) ? 0 : nmMedicamento.hashCode());
 		return result;
 	}
 
@@ -55,18 +96,18 @@ public class Medicine implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Medicine other = (Medicine) obj;
-		if (id != other.id)
+		if (idMedicamento != other.idMedicamento)
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (nmMedicamento == null) {
+			if (other.nmMedicamento != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!nmMedicamento.equals(other.nmMedicamento))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Medicine [id=" + id + ", name=" + name + "]";
+		return "Medicine [idMedicamento=" + idMedicamento + ", nmMedicamento=" + nmMedicamento + "]";
 	}
 }
