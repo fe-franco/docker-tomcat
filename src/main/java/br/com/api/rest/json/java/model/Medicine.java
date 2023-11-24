@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Medicine implements Serializable {
 
 	private static final long serialVersionUID = 6265729338971780551L;
-	private Long idMedicamento;
+	private int idMedicamento;
 	private String nmMedicamento;
 	private String dsDetalhadaMedicamento;
 	private String nrCodigoBarras;
@@ -19,10 +19,9 @@ public class Medicine implements Serializable {
 		super();
 	}
 
-	public Medicine(Long idMedicamento, String nmMedicamento, String dsDetalhadaMedicamento, String nrCodigoBarras,
+	public Medicine(String nmMedicamento, String dsDetalhadaMedicamento, String nrCodigoBarras,
 			String dtCadastro, String nmUsuario) {
 		super();
-		this.idMedicamento = idMedicamento;
 		this.nmMedicamento = nmMedicamento;
 		this.dsDetalhadaMedicamento = dsDetalhadaMedicamento;
 		this.nrCodigoBarras = nrCodigoBarras;
@@ -30,11 +29,11 @@ public class Medicine implements Serializable {
 		this.nmUsuario = nmUsuario;
 	}
 
-	public Long getIdMedicamento() {
+	public int getIdMedicamento() {
 		return idMedicamento;
 	}
 
-	public void setIdMedicamento(Long idMedicamento) {
+	public void setIdMedicamento(int idMedicamento) {
 		this.idMedicamento = idMedicamento;
 	}
 

@@ -13,11 +13,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.com.api.rest.json.java.bussiness.MedicineBusiness;
-import br.com.api.rest.json.java.interfaces.Controller;
 import br.com.api.rest.json.java.model.Medicine;
 
 @Path("/medicine")
-public class MedicineController implements Controller<Medicine> {
+public class MedicineController {
 
 	private MedicineBusiness medicineBusiness = new MedicineBusiness();
 
@@ -30,7 +29,7 @@ public class MedicineController implements Controller<Medicine> {
 	@GET
 	@Path("{ID}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Medicine findByID(@PathParam("ID") Long ID) {
+	public Medicine findByID(@PathParam("ID") int ID) {
 		return medicineBusiness.findByID(ID);
 	}
 

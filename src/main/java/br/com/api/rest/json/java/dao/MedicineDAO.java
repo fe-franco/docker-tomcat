@@ -9,49 +9,97 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.api.rest.json.java.data.DatabaseConnection;
-import br.com.api.rest.json.java.interfaces.Persist;
 import br.com.api.rest.json.java.model.Medicine;
 
 public class MedicineDAO {
 
-    @Override
-    public void save(Medicine object) {
-        medicines.add(object);
-    }
+	public void save(Medicine object) {
+		String sql = "INSERT INTO T_PLPL_MEDICAMENTO (nm_medicamento, ds_detalhada_medicamento, nr_codigo_barras, dt_cadastro, nm_usuario) VALUES (?, ?, ?, ?, ?)";
 
-    @Override
-    public void merge(Medicine object) {
-        medicines.add(object);
-    }
+		try (Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-    @Override
-    public void remove(Medicine object) {
-        medicines.remove(object);
-    }
+			stmt.setString(1, object.getNmMedicamento());
+			stmt.setString(2, object.getDsDetalhadaMedicamento());
+			stmt.setString(3, object.getNrCodigoBarras());
+			stmt.setString(4, object.getDtCadastro());
+			stmt.setString(5, object.getNmUsuario());
 
-    @Override
-    public List<Medicine> findAll() {
-        List<Medicine> prestadores = new ArrayList<>();
-        String sql = "SELECT * FROM T_PLPL_MEDICAMENTO";
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
-        try (Connection conn = DatabaseConnection.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery()) {
+	public void merge(Medicine object) {
+		String sql = "UPDATE T_PLPL_MEDICAMENTO SET nm_medicamento = ?, ds_detalhada_medicamento = ?, nr_codigo_barras = ?, dt_cadastro = ?, nm_usuario = ? WHERE id = ?";
 
-            while (rs.next()) {
-                Medicine prestador = new Medicine(sql, sql, sql, sql);
-                prestadores.add(prestador);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return prestadores;
-    }
+		try (Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-    @Override
-    public Medicine findByID(Long ID) {
-        Optional<Medicine> fornecedor = medicines.stream().filter(f -> f.getId().equals(ID)).findFirst();
-        return fornecedor.get();
-    }
+			stmt.setString(1, object.getNmMedicamento());
+			stmt.setString(2, object.getDsDetalhadaMedicamento());
+			stmt.setString(3, object.getNrCodigoBarras());
+			stmt.setString(4, object.getDtCadastro());
+			stmt.setString(5, object.getNmUsuario());
+			stmt.setInt(6, object.getIdMedicamento());
+
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void remove(Medicine object) {
+		String sql = "DELETE FROM T_PLPL_MEDICAMENTO WHERE id = ?";
+
+		try (Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+			stmt.setInt(1, object.getIdMedicamento());
+
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<Medicine> findAll() {
+		List<Medicine> medicines = new ArrayList<>();
+		String sql = "SELECT * FROM T_PLPL_MEDICAMENTO";
+
+		try (Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery()) {
+
+			while (rs.next()) {
+				Medicine medicine = new Medicine(sql, sql, sql, sql, sql);
+				medicines.add(medicine);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return medicines;
+	}
+
+	public Medicine findByID(int ID) {
+		Optional<Medicine> medicine = Optional.empty();
+		String sql = "SELECT * FROM T_PLPL_MEDICAMENTO WHERE id = ?";
+
+		try (Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+			stmt.setInt(1, ID);
+
+			try (ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) {
+					medicine = Optional.of(new Medicine(sql, sql, sql, sql, sql));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return medicine.orElse(null);
+	}
 
 }

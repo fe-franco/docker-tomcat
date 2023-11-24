@@ -3,10 +3,9 @@ package br.com.api.rest.json.java.bussiness;
 import java.util.List;
 
 import br.com.api.rest.json.java.dao.MedicineDAO;
-import br.com.api.rest.json.java.interfaces.Business;
 import br.com.api.rest.json.java.model.Medicine;
 
-public class MedicineBusiness implements Business<Medicine> {
+public class MedicineBusiness {
 
 	private MedicineDAO medicineDAO = new MedicineDAO();
 
@@ -26,7 +25,7 @@ public class MedicineBusiness implements Business<Medicine> {
 		return medicineDAO.findAll();
 	}
 
-	public Medicine findByID(Long ID) {
+	public Medicine findByID(int ID) {
 		return medicineDAO.findByID(ID);
 	}
 
